@@ -33,7 +33,7 @@ After building, you can start the executable by double-clicking. The program nee
 
 ## Parameter Description
 
-<code>-u</code> The users parameter is a path to the text file with the User Principal Names. In each line should be one User Principal Name.
+<code>-u</code> The users parameter is a path to the text file with the User Principal Names. In each line should be one User Principal Name.  
 <code>-p</code> The passwords parameter is a path to the text file with the passwords. In each line should be one password.
 
 [Downloads]:https://github.com/NSIDE-ATTACK-LOGIC/EZPasswordSpray/releases/tag/V1.0_Windows
