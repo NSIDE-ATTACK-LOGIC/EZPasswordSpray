@@ -49,13 +49,14 @@ func main() {
 		"\nIn each line should be one User Principal Name.")
 	passwordList := flag.String("p","passwords.txt","The passwords parameter is a path to the text file with the passwords." +
 		"\nIn each line should be one password.")
+    verbose := flag.Bool("v", false, "Be verbose, print more details about the current procedure.")
 
 	flag.Parse()
-	
+
 	users := readFile(*userList)
 	pwds := readFile(*passwordList)
 
-	fmt.Println("Starting EZPasswordSpray ( https://https://github.com/NSIDE-ATTACK-LOGIC/EZPasswordSpray ) at " + start.Format("2006-01-02 15:04"))
+	fmt.Println("Starting EZPasswordSpray ( https://github.com/NSIDE-ATTACK-LOGIC/EZPasswordSpray ) at " + start.Format("2006-01-02 15:04"))
 	fmt.Printf("Password Spraying on %v Users, each with %v passwords. (Reqests in total %v)\n", len(users),len(pwds), (len(pwds) * len(users)))
 
 	var wg sync.WaitGroup
@@ -64,6 +65,11 @@ func main() {
 	for _, user := range users{
 		for _, pwd := range pwds{
 			wg.Add(1)
+            if *verbose {
+                mutex.Lock()
+                result = append(result, "VERBOSE: Trying " + user + " : " + pwd)
+                 mutex.Unlock()
+            }
 			go spray(strings.TrimSpace(user), strings.TrimSpace(pwd), &wg, progressBar)
 		}
 	}
