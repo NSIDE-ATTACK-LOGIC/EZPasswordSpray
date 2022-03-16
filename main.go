@@ -40,7 +40,7 @@ func readFile(path string)[]string{
 		os.Exit(1)
 	}
 	tmp := string(content)
-	return strings.Split(tmp, "\n")
+	return strings.Split(strings.ReplaceAll(tmp, "\r\n", "\n"), "\n")
 }
 
 func main() {
