@@ -24,8 +24,9 @@ with the following command you receive the list of possible variables:
 go tool dist list
 ```
 
-then navigate to the EZAudit folder within your terminal and type the following command to build the executable:
+then navigate to the project folder within your terminal and type the following command to build the executable:
 ```sh
+go get github.com/schollz/progressbar
 go build
 ```
 
