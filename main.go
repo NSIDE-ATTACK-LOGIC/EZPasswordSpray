@@ -64,13 +64,15 @@ func main() {
 
 	for _, user := range users{
 		for _, pwd := range pwds{
-			wg.Add(1)
-            if *verbose {
-                mutex.Lock()
-                result = append(result, "VERBOSE: Trying " + user + " : " + pwd)
-                 mutex.Unlock()
-            }
-			go spray(strings.TrimSpace(user), strings.TrimSpace(pwd), &wg, progressBar)
+			if len(user) > 0 && len(pwd) > 0 {
+				wg.Add(1)
+				if *verbose {
+					mutex.Lock()
+					result = append(result, "VERBOSE: Trying " + user + " : " + pwd)
+					mutex.Unlock()
+				}
+				go spray(strings.TrimSpace(user), strings.TrimSpace(pwd), &wg, progressBar)
+			}
 		}
 	}
 
